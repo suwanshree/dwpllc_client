@@ -1,3 +1,4 @@
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 import {
   Modal,
   ModalOverlay,
@@ -13,6 +14,7 @@ import {
   Input,
   Text,
   Image,
+  ButtonGroup,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import smallLogo from "../../assets/pngs/logo-small.png";
@@ -49,7 +51,7 @@ export const LoginModal = ({ onClose, isOpen }) => {
           <ModalBody>
             <FormControl display="flex" alignItems="center" marginTop="20px">
               <FormLabel>username</FormLabel>
-              <Input type="text" name="name" width="150px" marginLeft="20px" />
+              <Input type="text" name="name" width="150px" marginLeft="21px" />
             </FormControl>
             <FormControl display="flex" alignItems="center" marginTop="20px">
               <FormLabel>password</FormLabel>
@@ -69,7 +71,20 @@ export const LoginModal = ({ onClose, isOpen }) => {
             gap="2"
           >
             {submitted ? <Text>Invalid Credentials. Try Again.</Text> : null}
-            <Button type="submit">Log In</Button>
+            <ButtonGroup>
+              <Button
+                rightIcon={<ExternalLinkIcon />}
+                variant="solid"
+                onClick={() =>
+                  window.open(
+                    "https://robertsspaceindustries.com/orgs/DWPLLC/members"
+                  )
+                }
+              >
+                Apply
+              </Button>
+              <Button type="submit">Log In</Button>
+            </ButtonGroup>
           </ModalFooter>
         </form>
       </ModalContent>
