@@ -1,7 +1,7 @@
 import { Box, Button, ButtonGroup, Image, Text, Fade } from "@chakra-ui/react";
-import LogoBackground from "../components/Background/LogoBackground";
-import smallLogo from "../assets/pngs/logo-small.png";
-import ModeButton from "../components/modeButton";
+import LogoBackground from "../../components/Background/LogoBackground";
+import smallLogo from "../../assets/pngs/logo-small.png";
+import ModeButton from "../../components/modeButton";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 
