@@ -1,4 +1,4 @@
-import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { ExternalLinkIcon, ArrowRightIcon } from "@chakra-ui/icons";
 import {
   Modal,
   ModalOverlay,
@@ -45,16 +45,25 @@ export const LoginModal = ({ onClose, isOpen }) => {
         zIndex="2"
       >
         <Image w="60px" src={smallLogo} alt="DWPLLC Logo" />
-        <ModalHeader fontSize="3xl">Member Login</ModalHeader>
+        <ModalHeader
+          fontSize="3xl"
+          color={colorMode === "light" ? "black" : "silver"}
+        >
+          Member Login
+        </ModalHeader>
         <ModalCloseButton />
         <form onSubmit={handleLoginSubmit}>
           <ModalBody>
             <FormControl display="flex" alignItems="center" marginTop="20px">
-              <FormLabel>username</FormLabel>
+              <FormLabel color={colorMode === "light" ? "black" : "silver"}>
+                username
+              </FormLabel>
               <Input type="text" name="name" width="150px" marginLeft="21px" />
             </FormControl>
             <FormControl display="flex" alignItems="center" marginTop="20px">
-              <FormLabel>password</FormLabel>
+              <FormLabel color={colorMode === "light" ? "black" : "silver"}>
+                password
+              </FormLabel>
               <Input
                 type="password"
                 name="year"
@@ -70,11 +79,15 @@ export const LoginModal = ({ onClose, isOpen }) => {
             flexDirection="column"
             gap="2"
           >
-            {submitted ? <Text>Invalid Credentials. Try Again.</Text> : null}
-            <ButtonGroup>
+            {submitted ? (
+              <Text color={colorMode === "light" ? "black" : "silver"}>
+                Invalid Credentials. Try Again.
+              </Text>
+            ) : null}
+            <ButtonGroup spacing={4}>
               <Button
                 rightIcon={<ExternalLinkIcon />}
-                variant="solid"
+                variant="primary"
                 onClick={() =>
                   window.open(
                     "https://robertsspaceindustries.com/orgs/DWPLLC/members"
@@ -83,7 +96,13 @@ export const LoginModal = ({ onClose, isOpen }) => {
               >
                 Apply
               </Button>
-              <Button type="submit">Log In</Button>
+              <Button
+                type="submit"
+                variant="primary"
+                rightIcon={<ArrowRightIcon />}
+              >
+                Log In
+              </Button>
             </ButtonGroup>
           </ModalFooter>
         </form>

@@ -4,15 +4,16 @@ import {
   Text,
   UnorderedList,
   ListItem,
-  Button,
+  useColorMode,
 } from "@chakra-ui/react";
-import { RepeatIcon, ChevronUpIcon } from "@chakra-ui/icons";
+import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { useHomeStore } from "../../store";
 
 const Charter = () => {
-  const { resetView, prevView } = useHomeStore();
-  const handleHomeClick = () => {
-    resetView();
+  const { nextView, prevView } = useHomeStore();
+  const { colorMode } = useColorMode();
+  const handleNextClick = () => {
+    nextView();
   };
   const handlePrevClick = () => {
     prevView();
@@ -23,7 +24,7 @@ const Charter = () => {
       justifyContent="center"
       alignItems="center"
       flexDirection="column"
-      w={["90vw", "30vw"]}
+      w={["90vw", "40vw"]}
     >
       <IconButton
         icon={<ChevronUpIcon />}
@@ -38,10 +39,18 @@ const Charter = () => {
       >
         Continue
       </IconButton>
-      <Text fontSize={["2xl", "4xl"]} marginBottom="20px">
-        Charter
+      <Text
+        fontSize={["2xl", "4xl"]}
+        marginBottom="20px"
+        color={colorMode === "light" ? "black" : "silver"}
+      >
+        CHARTER
       </Text>
-      <UnorderedList fontSize={["l", "xl"]} spacing="10px">
+      <UnorderedList
+        fontSize={["l", "xl"]}
+        spacing="10px"
+        color={colorMode === "light" ? "black" : "silver"}
+      >
         <ListItem>
           DWPLLC is a PMC with massive stake holdings in other verticals to
           maximize profit. Organization ethics are based around maximizing
@@ -64,17 +73,17 @@ const Charter = () => {
         </ListItem>
       </UnorderedList>
       <IconButton
-        icon={<RepeatIcon />}
-        fontSize="20px"
+        icon={<ChevronDownIcon />}
+        fontSize="40px"
         aria-label="Color mode switcher"
-        onClick={handleHomeClick}
+        onClick={handleNextClick}
         variant="outline"
         pos="sticky"
-        top="0"
+        bottom="0"
         w="80px"
         margin="40px"
       >
-        Home
+        Continue
       </IconButton>
     </Box>
   );

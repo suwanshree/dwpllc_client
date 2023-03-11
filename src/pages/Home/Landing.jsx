@@ -5,6 +5,7 @@ import {
   IconButton,
   Image,
   Text,
+  useColorMode,
 } from "@chakra-ui/react";
 import smallLogo from "../../assets/pngs/logo-small.png";
 import { ExternalLinkIcon, ChevronDownIcon } from "@chakra-ui/icons";
@@ -12,6 +13,7 @@ import { useHomeStore } from "../../store";
 
 const Landing = () => {
   const { nextView } = useHomeStore();
+  const { colorMode } = useColorMode();
   const handleNextClick = () => {
     nextView();
   };
@@ -24,10 +26,20 @@ const Landing = () => {
       textAlign="center"
     >
       <Image w={["80px", "200px"]} src={smallLogo} alt="DWPLLC Logo" />
-      <Text fontSize={["4xl", "8xl"]} w={["90vw", "75vw"]} marginBottom="20px">
+      <Text
+        fontSize={["4xl", "8xl"]}
+        w={["90vw", "75vw"]}
+        marginBottom="20px"
+        color={colorMode === "light" ? "black" : "silver"}
+      >
         Dark Water Privateers LLC.
       </Text>
-      <Text fontSize={["xl", "2xl"]} w={["90vw", "60vw"]} marginBottom="40px">
+      <Text
+        fontSize={["xl", "2xl"]}
+        w={["90vw", "60vw"]}
+        marginBottom="40px"
+        color={colorMode === "light" ? "black" : "silver"}
+      >
         We are a PMC focused on civilian contracts, and specialized economic
         opportunities around the ‘verse. Constantly expanding and recruiting
         players for many play-styles.
@@ -35,7 +47,7 @@ const Landing = () => {
       <ButtonGroup direction="row" spacing={4}>
         <Button
           rightIcon={<ExternalLinkIcon />}
-          variant="solid"
+          variant="primary"
           onClick={() =>
             window.open(
               "https://robertsspaceindustries.com/orgs/DWPLLC/members"
@@ -46,7 +58,7 @@ const Landing = () => {
         </Button>
         <Button
           rightIcon={<ExternalLinkIcon />}
-          variant="solid"
+          variant="primary"
           onClick={() =>
             window.open("https://robertsspaceindustries.com/orgs/DWPLLC")
           }
@@ -55,7 +67,7 @@ const Landing = () => {
         </Button>
         <Button
           rightIcon={<ExternalLinkIcon />}
-          variant="solid"
+          variant="primary"
           onClick={() => window.open("https://discord.gg/BmHpKK7")}
         >
           Discord
