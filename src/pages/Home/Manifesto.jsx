@@ -4,12 +4,14 @@ import {
   Text,
   UnorderedList,
   ListItem,
+  useColorMode,
 } from "@chakra-ui/react";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { useHomeStore } from "../../store";
 
 const Manifesto = () => {
   const { nextView, prevView } = useHomeStore();
+  const { colorMode } = useColorMode();
   const handleNextClick = () => {
     nextView();
   };
@@ -37,10 +39,19 @@ const Manifesto = () => {
       >
         Continue
       </IconButton>
-      <Text fontSize={["2xl", "4xl"]} marginBottom="20px">
-        Manifesto
+      <Text
+        fontSize={["2xl", "4xl"]}
+        marginBottom="20px"
+        color={colorMode === "light" ? "black" : "silver"}
+      >
+        MANIFESTO
       </Text>
-      <UnorderedList fontSize={["l", "xl"]} listStyleType="none" spacing="10px">
+      <UnorderedList
+        fontSize={["l", "xl"]}
+        listStyleType="none"
+        spacing="10px"
+        color={colorMode === "light" ? "black" : "silver"}
+      >
         <ListItem fontWeight="bold" fontSize={["xl", "2xl"]}>
           Vision
         </ListItem>

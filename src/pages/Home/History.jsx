@@ -9,14 +9,16 @@ import {
   TableContainer,
   Thead,
   Tbody,
+  useColorMode,
 } from "@chakra-ui/react";
-import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
+import { ChevronUpIcon, RepeatIcon } from "@chakra-ui/icons";
 import { useHomeStore } from "../../store";
 
 const History = () => {
-  const { nextView, prevView } = useHomeStore();
-  const handleNextClick = () => {
-    nextView();
+  const { resetView, prevView } = useHomeStore();
+  const { colorMode } = useColorMode();
+  const handleHomeClick = () => {
+    resetView();
   };
   const handlePrevClick = () => {
     prevView();
@@ -46,11 +48,15 @@ const History = () => {
         w={["90vw", "75vw"]}
         marginBottom="20px"
         textAlign="center"
+        color={colorMode === "light" ? "black" : "silver"}
       >
-        History
+        HISTORY
       </Text>
-      <TableContainer w={["90vw", "60vw"]}>
-        <Table variant="simple">
+      <TableContainer w={["90vw", "80vw"]}>
+        <Table
+          variant="simple"
+          color={colorMode === "light" ? "black" : "silver"}
+        >
           <Thead>
             <Tr>
               <Th>Date</Th>
@@ -129,17 +135,17 @@ const History = () => {
         </Table>
       </TableContainer>
       <IconButton
-        icon={<ChevronDownIcon />}
-        fontSize="40px"
+        icon={<RepeatIcon />}
+        fontSize="20px"
         aria-label="Color mode switcher"
-        onClick={handleNextClick}
+        onClick={handleHomeClick}
         variant="outline"
         pos="sticky"
-        bottom="0"
+        top="0"
         w="80px"
         margin="40px"
       >
-        Continue
+        Home
       </IconButton>
     </Box>
   );

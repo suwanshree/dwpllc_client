@@ -18,13 +18,13 @@ const Home = () => {
       currentView = <Landing />;
       break;
     case 1:
-      currentView = <History />;
-      break;
-    case 2:
       currentView = <Manifesto />;
       break;
-    case 3:
+    case 2:
       currentView = <Charter />;
+      break;
+    case 3:
+      currentView = <History />;
       break;
     default:
       currentPage = <Landing />;
