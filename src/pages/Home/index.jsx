@@ -1,4 +1,4 @@
-import { Box, IconButton, useDisclosure, Slide } from "@chakra-ui/react";
+import { Box, IconButton, useDisclosure } from "@chakra-ui/react";
 import LogoBackground from "../../components/Background/LogoBackground";
 import ModeButton from "../../components/modeButton";
 import { LoginModal } from "../../components/Modal/LoginModal";
@@ -13,6 +13,7 @@ import Landing from "./Landing";
 import History from "./History";
 import Charter from "./Charter";
 import Manifesto from "./Manifesto";
+import Video from "./Video";
 
 const Home = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -38,6 +39,9 @@ const Home = () => {
       currentView = <Charter />;
       break;
     case 3:
+      currentView = <Video />;
+      break;
+    case 4:
       currentView = <History />;
       break;
     default:
@@ -84,10 +88,10 @@ const Home = () => {
       ) : null}
       {currentView}
       <IconButton
-        icon={view === 3 ? <RepeatIcon /> : <ChevronDownIcon />}
-        fontSize={view === 3 ? "22px" : "40px"}
+        icon={view === 4 ? <RepeatIcon /> : <ChevronDownIcon />}
+        fontSize={view === 4 ? "22px" : "40px"}
         aria-label="Color mode switcher"
-        onClick={view === 3 ? handleHomeClick : handleNextClick}
+        onClick={view === 4 ? handleHomeClick : handleNextClick}
         variant="outline"
         pos="absolute"
         bottom="0"

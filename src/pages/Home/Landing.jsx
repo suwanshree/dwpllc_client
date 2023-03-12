@@ -43,7 +43,7 @@ const Landing = () => {
         around the ‘verse. Constantly expanding and recruiting players for many
         play-styles.
       </Text>
-      <ButtonGroup direction="row" spacing={4}>
+      <ButtonGroup direction="row" spacing={3}>
         <Button
           rightIcon={<ExternalLinkIcon />}
           variant="primary"
