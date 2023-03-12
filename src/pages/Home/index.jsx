@@ -1,17 +1,32 @@
-import { Box, Fade, IconButton, useDisclosure } from "@chakra-ui/react";
+import { Box, IconButton, useDisclosure } from "@chakra-ui/react";
 import LogoBackground from "../../components/Background/LogoBackground";
 import ModeButton from "../../components/modeButton";
 import { LoginModal } from "../../components/Modal/LoginModal";
-import { LockIcon } from "@chakra-ui/icons";
+import {
+  ChevronDownIcon,
+  ChevronUpIcon,
+  LockIcon,
+  RepeatIcon,
+} from "@chakra-ui/icons";
 import { useHomeStore } from "../../store";
 import Landing from "./Landing";
 import History from "./History";
 import Charter from "./Charter";
 import Manifesto from "./Manifesto";
+import Video from "./Video";
 
 const Home = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const view = useHomeStore((state) => state.view);
+  const { view, previousView, prevView, nextView, resetView } = useHomeStore();
+  const handleNextClick = () => {
+    nextView();
+  };
+  const handlePrevClick = () => {
+    prevView();
+  };
+  const handleHomeClick = () => {
+    resetView();
+  };
   let currentView;
   switch (view) {
     case 0:
@@ -24,10 +39,13 @@ const Home = () => {
       currentView = <Charter />;
       break;
     case 3:
+      currentView = <Video />;
+      break;
+    case 4:
       currentView = <History />;
       break;
     default:
-      currentPage = <Landing />;
+      currentView = <Landing />;
       break;
   }
   return (
@@ -37,7 +55,7 @@ const Home = () => {
       w="100vw"
       h="100vh"
       alignItems="center"
-      flexDirection={["column", "row"]}
+      flexDirection="column"
     >
       <LogoBackground />
       <ModeButton />
@@ -53,7 +71,35 @@ const Home = () => {
       >
         Member Login
       </IconButton>
-      <Fade in>{currentView}</Fade>
+      {view !== 0 ? (
+        <IconButton
+          icon={<ChevronUpIcon />}
+          fontSize="40px"
+          aria-label="Color mode switcher"
+          onClick={handlePrevClick}
+          variant="outline"
+          pos="absolute"
+          top="0"
+          w="80px"
+          marginTop="20px"
+        >
+          Previous
+        </IconButton>
+      ) : null}
+      {currentView}
+      <IconButton
+        icon={view === 4 ? <RepeatIcon /> : <ChevronDownIcon />}
+        fontSize={view === 4 ? "22px" : "40px"}
+        aria-label="Color mode switcher"
+        onClick={view === 4 ? handleHomeClick : handleNextClick}
+        variant="outline"
+        pos="absolute"
+        bottom="0"
+        w="80px"
+        marginBottom="20px"
+      >
+        Continue
+      </IconButton>
       <LoginModal onClose={onClose} isOpen={isOpen} />
     </Box>
   );

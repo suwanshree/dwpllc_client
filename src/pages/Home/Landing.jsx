@@ -2,21 +2,16 @@ import {
   Box,
   Button,
   ButtonGroup,
-  IconButton,
   Image,
   Text,
+  chakra,
   useColorMode,
 } from "@chakra-ui/react";
 import smallLogo from "../../assets/pngs/logo-small.png";
-import { ExternalLinkIcon, ChevronDownIcon } from "@chakra-ui/icons";
-import { useHomeStore } from "../../store";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 const Landing = () => {
-  const { nextView } = useHomeStore();
   const { colorMode } = useColorMode();
-  const handleNextClick = () => {
-    nextView();
-  };
   return (
     <Box
       display="flex"
@@ -30,7 +25,7 @@ const Landing = () => {
         fontSize={["4xl", "8xl"]}
         w={["90vw", "75vw"]}
         marginBottom="20px"
-        color={colorMode === "light" ? "black" : "silver"}
+        color={colorMode === "light" ? "gray.800" : "silver"}
       >
         Dark Water Privateers LLC.
       </Text>
@@ -38,13 +33,17 @@ const Landing = () => {
         fontSize={["xl", "2xl"]}
         w={["90vw", "60vw"]}
         marginBottom="40px"
-        color={colorMode === "light" ? "black" : "silver"}
+        color={colorMode === "light" ? "black" : "gray.400"}
       >
-        We are a PMC focused on civilian contracts, and specialized economic
-        opportunities around the ‘verse. Constantly expanding and recruiting
-        players for many play-styles.
+        We are a{" "}
+        <chakra.span color={colorMode === "light" ? "gray.800" : "silver"}>
+          PMC
+        </chakra.span>{" "}
+        focused on civilian contracts, and specialized economic opportunities
+        around the ‘verse. Constantly expanding and recruiting players for many
+        play-styles.
       </Text>
-      <ButtonGroup direction="row" spacing={4}>
+      <ButtonGroup direction="row" spacing={3}>
         <Button
           rightIcon={<ExternalLinkIcon />}
           variant="primary"
@@ -73,19 +72,6 @@ const Landing = () => {
           Discord
         </Button>
       </ButtonGroup>
-      <IconButton
-        icon={<ChevronDownIcon />}
-        fontSize="40px"
-        aria-label="Color mode switcher"
-        onClick={handleNextClick}
-        variant="outline"
-        pos="sticky"
-        bottom="0"
-        w="80px"
-        margin="40px"
-      >
-        Continue
-      </IconButton>
     </Box>
   );
 };
