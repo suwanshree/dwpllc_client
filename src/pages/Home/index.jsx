@@ -77,7 +77,7 @@ const Home = () => {
           pos="absolute"
           top="0"
           w="80px"
-          margin="20px"
+          marginTop="20px"
         >
           Previous
         </IconButton>
@@ -92,7 +92,7 @@ const Home = () => {
         pos="absolute"
         bottom="0"
         w="80px"
-        margin="20px"
+        marginBottom="20px"
       >
         Continue
       </IconButton>
