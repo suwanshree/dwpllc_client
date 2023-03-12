@@ -26,19 +26,6 @@ const Charter = () => {
       flexDirection="column"
       w={["90vw", "40vw"]}
     >
-      <IconButton
-        icon={<ChevronUpIcon />}
-        fontSize="40px"
-        aria-label="Color mode switcher"
-        onClick={handlePrevClick}
-        variant="outline"
-        pos="sticky"
-        top="0"
-        w="80px"
-        margin="40px"
-      >
-        Continue
-      </IconButton>
       <Text
         fontSize={["2xl", "4xl"]}
         marginBottom="20px"
@@ -72,19 +59,6 @@ const Charter = () => {
           our members. Which sometimes means treading on dangerous lines.
         </ListItem>
       </UnorderedList>
-      <IconButton
-        icon={<ChevronDownIcon />}
-        fontSize="40px"
-        aria-label="Color mode switcher"
-        onClick={handleNextClick}
-        variant="outline"
-        pos="sticky"
-        bottom="0"
-        w="80px"
-        margin="40px"
-      >
-        Continue
-      </IconButton>
     </Box>
   );
 };

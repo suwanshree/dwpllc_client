@@ -10,6 +10,7 @@ import {
   Thead,
   Tbody,
   useColorMode,
+  TableCaption,
 } from "@chakra-ui/react";
 import { ChevronUpIcon, RepeatIcon } from "@chakra-ui/icons";
 import { useHomeStore } from "../../store";
@@ -30,19 +31,6 @@ const History = () => {
       alignItems="center"
       flexDirection="column"
     >
-      <IconButton
-        icon={<ChevronUpIcon />}
-        fontSize="40px"
-        aria-label="Color mode switcher"
-        onClick={handlePrevClick}
-        variant="outline"
-        pos="sticky"
-        top="0"
-        w="80px"
-        margin="40px"
-      >
-        Continue
-      </IconButton>
       <Text
         fontSize={["2xl", "4xl"]}
         w={["90vw", "75vw"]}
@@ -57,6 +45,9 @@ const History = () => {
           variant="simple"
           color={colorMode === "light" ? "black" : "silver"}
         >
+          <TableCaption color={colorMode === "light" ? "black" : "silver"}>
+            For best expereince please view on a desktop
+          </TableCaption>
           <Thead>
             <Tr>
               <Th>Date</Th>
@@ -134,19 +125,6 @@ const History = () => {
           </Tbody>
         </Table>
       </TableContainer>
-      <IconButton
-        icon={<RepeatIcon />}
-        fontSize="20px"
-        aria-label="Color mode switcher"
-        onClick={handleHomeClick}
-        variant="outline"
-        pos="sticky"
-        top="0"
-        w="80px"
-        margin="40px"
-      >
-        Home
-      </IconButton>
     </Box>
   );
 };

@@ -14,9 +14,6 @@ import { useHomeStore } from "../../store";
 const Landing = () => {
   const { nextView } = useHomeStore();
   const { colorMode } = useColorMode();
-  const handleNextClick = () => {
-    nextView();
-  };
   return (
     <Box
       display="flex"
@@ -73,19 +70,6 @@ const Landing = () => {
           Discord
         </Button>
       </ButtonGroup>
-      <IconButton
-        icon={<ChevronDownIcon />}
-        fontSize="40px"
-        aria-label="Color mode switcher"
-        onClick={handleNextClick}
-        variant="outline"
-        pos="sticky"
-        bottom="0"
-        w="80px"
-        margin="40px"
-      >
-        Continue
-      </IconButton>
     </Box>
   );
 };
