@@ -1,6 +1,5 @@
 import {
   Box,
-  IconButton,
   Text,
   Th,
   Tr,
@@ -9,21 +8,14 @@ import {
   TableContainer,
   Thead,
   Tbody,
+  chakra,
   useColorMode,
-  TableCaption,
+  UnorderedList,
+  ListItem,
 } from "@chakra-ui/react";
-import { ChevronUpIcon, RepeatIcon } from "@chakra-ui/icons";
-import { useHomeStore } from "../../store";
 
 const History = () => {
-  const { resetView, prevView } = useHomeStore();
   const { colorMode } = useColorMode();
-  const handleHomeClick = () => {
-    resetView();
-  };
-  const handlePrevClick = () => {
-    prevView();
-  };
   return (
     <Box
       display="flex"
@@ -40,11 +32,87 @@ const History = () => {
       >
         HISTORY
       </Text>
-      <TableContainer w={["90vw", "80vw"]}>
+      <UnorderedList
+        display={["block", "none"]}
+        fontSize={["m", "xl"]}
+        listStyleType="none"
+        marginLeft="0"
+        spacing="5px"
+        width="90vw"
+        color={colorMode === "light" ? "black" : "silver"}
+      >
+        <ListItem color={colorMode === "light" ? "black" : "gray.400"}>
+          <chakra.span fontStyle="italic" fontWeight="bold">
+            April 2950:{" "}
+          </chakra.span>
+          FatalAngel leaves Hurston in search of new opportunities.
+        </ListItem>
+        <ListItem color={colorMode === "light" ? "black" : "gray.400"}>
+          <chakra.span fontStyle="italic" fontWeight="bold">
+            July 2950:{" "}
+          </chakra.span>
+          After gaining influence in Levski, FatalAngel decides to carve his own
+          path.
+        </ListItem>
+        <ListItem color={colorMode === "light" ? "black" : "gray.400"}>
+          <chakra.span fontStyle="italic" fontWeight="bold">
+            August 2950:{" "}
+          </chakra.span>
+          Fatal meets like-minded individuals, and they establish Dark Water
+          Privateers LLC in Levski.
+        </ListItem>
+        <ListItem color={colorMode === "light" ? "black" : "gray.400"}>
+          <chakra.span fontStyle="italic" fontWeight="bold">
+            August 17, 2950:{" "}
+          </chakra.span>
+          Dark Water Privateers LLC is established, led by FatalAngel and
+          supported by CMDR_Despair.
+        </ListItem>
+        <ListItem color={colorMode === "light" ? "black" : "gray.400"}>
+          <chakra.span fontStyle="italic" fontWeight="bold">
+            September 7, 2950:{" "}
+          </chakra.span>
+          The organization holds its first intra-org ground ops event, resulting
+          in a loss for the defending force.
+        </ListItem>
+        <ListItem color={colorMode === "light" ? "black" : "gray.400"}>
+          <chakra.span fontStyle="italic" fontWeight="bold">
+            October 18, 2950:{" "}
+          </chakra.span>
+          An inter-org FPS event is held, resulting in a tie and a planned
+          tie-breaker event.
+        </ListItem>
+        <ListItem color={colorMode === "light" ? "black" : "gray.400"}>
+          <chakra.span fontStyle="italic" fontWeight="bold">
+            February 15, 2951:{" "}
+          </chakra.span>
+          DWPLLC signs a 1-year mutually beneficial contract with Crusader
+          Industries, details undisclosed.
+        </ListItem>
+        <ListItem color={colorMode === "light" ? "black" : "gray.400"}>
+          <chakra.span fontStyle="italic" fontWeight="bold">
+            June 18, 2951:{" "}
+          </chakra.span>
+          DWPLLC members assist the CDF in pushing back Xenothreat and are
+          rewarded by Advocacy and CDF.
+        </ListItem>
+        <ListItem color={colorMode === "light" ? "black" : "gray.400"}>
+          <chakra.span fontStyle="italic" fontWeight="bold">
+            December 26, 2951:{" "}
+          </chakra.span>
+          DWPLLC members participate in the 'Jumptown Wars' and battle to secure
+          the ultimate profits..
+        </ListItem>
+        <ListItem color={colorMode === "light" ? "black" : "gray.400"}>
+          <chakra.span fontStyle="italic" fontWeight="bold">
+            January 2952:{" "}
+          </chakra.span>
+          Several DWPLLC members are assigned to contracts in the Pyro system
+          with news of organization expansion.
+        </ListItem>
+      </UnorderedList>
+      <TableContainer w={["90vw", "80vw"]} display={["none", "block"]}>
         <Table variant="simple">
-          <TableCaption color={colorMode === "light" ? "gray.800" : "silver"}>
-            For best expereince please view on a desktop
-          </TableCaption>
           <Thead>
             <Tr>
               <Th>Date</Th>
