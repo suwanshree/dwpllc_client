@@ -18,15 +18,31 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import smallLogo from "../../assets/pngs/logo-small.png";
+import { useAuthStore } from "../../store/index";
 
 export const LoginModal = ({ onClose, isOpen }) => {
   const { colorMode } = useColorMode();
-  const [submitted, setSubmitted] = useState(false);
-  const handleLoginSubmit = (event) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const { login } = useAuthStore();
+
+  const handleLoginSubmit = async (event) => {
     event.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
+    setIsLoading(true);
+    setError(null);
+    try {
+      const success = await login(username, password);
+      onClose();
+    } catch (error) {
+      setError("Invalid Credentials. Try Again.");
+    } finally {
+      setIsLoading(false);
+      setTimeout(() => setError(""), 5000);
+    }
   };
+
   return (
     <Modal
       onClose={onClose}
@@ -58,7 +74,13 @@ export const LoginModal = ({ onClose, isOpen }) => {
               <FormLabel color={colorMode === "light" ? "black" : "silver"}>
                 username
               </FormLabel>
-              <Input type="text" name="name" width="150px" marginLeft="21px" />
+              <Input
+                type="text"
+                name="name"
+                width="150px"
+                marginLeft="21px"
+                onChange={(e) => setUsername(e.target.value)}
+              />
             </FormControl>
             <FormControl display="flex" alignItems="center" marginTop="20px">
               <FormLabel color={colorMode === "light" ? "black" : "silver"}>
@@ -69,9 +91,18 @@ export const LoginModal = ({ onClose, isOpen }) => {
                 name="year"
                 width="150px"
                 marginLeft="24px"
+                onChange={(e) => setPassword(e.target.value)}
               />
             </FormControl>
           </ModalBody>
+          {error && (
+            <Text
+              textAlign="center"
+              color={colorMode === "light" ? "black" : "silver"}
+            >
+              {error}
+            </Text>
+          )}
           <ModalFooter
             display="flex"
             justifyContent="center"
@@ -79,11 +110,6 @@ export const LoginModal = ({ onClose, isOpen }) => {
             flexDirection="column"
             gap="2"
           >
-            {submitted ? (
-              <Text color={colorMode === "light" ? "black" : "silver"}>
-                Invalid Credentials. Try Again.
-              </Text>
-            ) : null}
             <ButtonGroup spacing={4}>
               <Button
                 rightIcon={<ExternalLinkIcon />}
@@ -99,6 +125,7 @@ export const LoginModal = ({ onClose, isOpen }) => {
               <Button
                 type="submit"
                 variant="primary"
+                isLoading={isLoading}
                 rightIcon={<ArrowRightIcon />}
               >
                 Log In

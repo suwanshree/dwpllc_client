@@ -21,6 +21,31 @@ let homeStore = (set) => ({
   resetView: () => set((state) => ({ ...state, view: 0, previousView: 0 })),
 });
 
+let authStore = (set) => ({
+  token: "",
+  user: null,
+  setToken: (token) => set((state) => ({ ...state, token })),
+  setUser: (user) => set((state) => ({ ...state, user })),
+  login: async (username, password) => {
+    const response = await fetch("http://localhost:3000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      set((state) => ({ ...state, token: data.token, user: data.user }));
+    } else {
+      throw new Error("Failed to login");
+    }
+  },
+  logout: () => set((state) => ({ ...state, token: "", user: null })),
+});
+
+authStore = persist(authStore, { name: "auth" });
 homeStore = persist(homeStore, { name: "home" });
 
+export const useAuthStore = create(authStore);
 export const useHomeStore = create(homeStore);
