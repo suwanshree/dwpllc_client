@@ -6,9 +6,11 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
   LockIcon,
+  UnlockIcon,
   RepeatIcon,
 } from "@chakra-ui/icons";
-import { useHomeStore } from "../../store";
+import { useAuthStore, useHomeStore } from "../../store";
+import { useNavigate } from "react-router-dom";
 import Landing from "./Landing";
 import History from "./History";
 import Charter from "./Charter";
@@ -18,6 +20,10 @@ import Video from "./Video";
 const Home = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
   const { view, prevView, nextView, resetView } = useHomeStore();
+  const { token } = useAuthStore();
+  const navigate = useNavigate();
+  const isAuthenticated = token !== "";
+  const leftIcon = isAuthenticated ? <UnlockIcon /> : <LockIcon />;
   const handleNextClick = () => {
     nextView();
   };
@@ -60,14 +66,14 @@ const Home = () => {
       <LogoBackground />
       <ModeButton />
       <IconButton
-        icon={<LockIcon />} // <UnlockIcon />
+        icon={leftIcon}
         aria-label="Login Button"
         variant="outline"
         position="absolute"
         top="0"
         left="0"
         margin="20px"
-        onClick={onOpen}
+        onClick={isAuthenticated ? () => navigate("/members") : onOpen}
       >
         Member Login
       </IconButton>

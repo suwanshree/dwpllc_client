@@ -19,6 +19,7 @@ import {
 import { useState } from "react";
 import smallLogo from "../../assets/pngs/logo-small.png";
 import { useAuthStore } from "../../store/index";
+import { useNavigate } from "react-router-dom";
 
 export const LoginModal = ({ onClose, isOpen }) => {
   const { colorMode } = useColorMode();
@@ -27,6 +28,7 @@ export const LoginModal = ({ onClose, isOpen }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const { login } = useAuthStore();
+  const navigate = useNavigate();
 
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
@@ -35,8 +37,9 @@ export const LoginModal = ({ onClose, isOpen }) => {
     try {
       const success = await login(username, password);
       onClose();
+      navigate("/members");
     } catch (error) {
-      setError("Invalid Credentials. Try Again.");
+      setError("Login Failed. Try Again.");
     } finally {
       setIsLoading(false);
       setTimeout(() => setError(""), 5000);
@@ -80,6 +83,7 @@ export const LoginModal = ({ onClose, isOpen }) => {
                 width="150px"
                 marginLeft="21px"
                 onChange={(e) => setUsername(e.target.value)}
+                required
               />
             </FormControl>
             <FormControl display="flex" alignItems="center" marginTop="20px">
@@ -92,6 +96,7 @@ export const LoginModal = ({ onClose, isOpen }) => {
                 width="150px"
                 marginLeft="24px"
                 onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </FormControl>
           </ModalBody>
@@ -112,6 +117,14 @@ export const LoginModal = ({ onClose, isOpen }) => {
           >
             <ButtonGroup spacing={4}>
               <Button
+                type="submit"
+                variant="primary"
+                isLoading={isLoading}
+                rightIcon={<ArrowRightIcon />}
+              >
+                Log In
+              </Button>
+              <Button
                 rightIcon={<ExternalLinkIcon />}
                 variant="primary"
                 onClick={() =>
@@ -121,14 +134,6 @@ export const LoginModal = ({ onClose, isOpen }) => {
                 }
               >
                 Apply
-              </Button>
-              <Button
-                type="submit"
-                variant="primary"
-                isLoading={isLoading}
-                rightIcon={<ArrowRightIcon />}
-              >
-                Log In
               </Button>
             </ButtonGroup>
           </ModalFooter>
