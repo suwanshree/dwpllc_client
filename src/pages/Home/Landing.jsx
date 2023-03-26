@@ -22,7 +22,7 @@ const Landing = () => {
     >
       <Image w={["80px", "200px"]} src={smallLogo} alt="DWPLLC Logo" />
       <Text
-        fontSize={["4xl", "8xl"]}
+        fontSize={["4xl", "6xl", "8xl"]}
         w={["90vw", "75vw"]}
         marginBottom="20px"
         color={colorMode === "light" ? "gray.800" : "silver"}
