@@ -1,15 +1,32 @@
-import { Box, Button, ButtonGroup, Image, Text, Fade } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  Image,
+  Text,
+  Fade,
+  IconButton,
+} from "@chakra-ui/react";
 import LogoBackground from "../../components/Background/LogoBackground";
 import smallLogo from "../../assets/pngs/logo-small.png";
 import ModeButton from "../../components/modeButton";
-import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { ArrowLeftIcon, ExternalLinkIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "../../store";
+import { useEffect } from "react";
 
 function Members() {
+  const { token } = useAuthStore();
   const navigate = useNavigate();
+  const isAuthenticated = token !== "";
   const handleHomeClicked = () => {
     navigate("/");
   };
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated]);
   return (
     <Box
       display="flex"
@@ -20,7 +37,9 @@ function Members() {
       flexDirection={["column", "row"]}
     >
       <LogoBackground />
-      <Button
+      <IconButton
+        icon={<ArrowLeftIcon />}
+        aria-label="Login Button"
         variant="outline"
         position="absolute"
         top="0"
@@ -29,7 +48,7 @@ function Members() {
         onClick={handleHomeClicked}
       >
         Home
-      </Button>
+      </IconButton>
       <ModeButton />
       <Fade in>
         <Box

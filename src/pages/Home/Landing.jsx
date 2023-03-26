@@ -27,7 +27,8 @@ const Landing = () => {
         marginBottom="20px"
         color={colorMode === "light" ? "gray.800" : "silver"}
       >
-        Dark Water Privateers LLC.
+        Dark Water Privateers
+        <chakra.span fontSize={["0", "xl"]}> LLC.</chakra.span>
       </Text>
       <Text
         fontSize={["xl", "2xl"]}

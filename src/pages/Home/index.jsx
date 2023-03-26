@@ -17,7 +17,7 @@ import Video from "./Video";
 
 const Home = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const { view, previousView, prevView, nextView, resetView } = useHomeStore();
+  const { view, prevView, nextView, resetView } = useHomeStore();
   const handleNextClick = () => {
     nextView();
   };
@@ -60,7 +60,7 @@ const Home = () => {
       <LogoBackground />
       <ModeButton />
       <IconButton
-        icon={<LockIcon />}
+        icon={<LockIcon />} // <UnlockIcon />
         aria-label="Login Button"
         variant="outline"
         position="absolute"
