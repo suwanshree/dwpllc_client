@@ -2,26 +2,31 @@ import {
   Box,
   Button,
   ButtonGroup,
-  IconButton,
   Image,
   Text,
   Fade,
+  IconButton,
   useDisclosure,
 } from "@chakra-ui/react";
-import LogoBackground from "../components/Background/LogoBackground";
-import smallLogo from "../assets/pngs/logo-small.png";
-import ModeButton from "../components/modeButton";
-import { ExternalLinkIcon, ChevronDownIcon } from "@chakra-ui/icons";
-import { LoginModal } from "../components/Modal/LoginModal";
-import { useState } from "react";
+import LogoBackground from "../../components/Background/LogoBackground";
+import smallLogo from "../../assets/pngs/logo-small.png";
+import ModeButton from "../../components/modeButton";
+import { ArrowBackIcon, ExternalLinkIcon } from "@chakra-ui/icons";
+import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "../../store";
+import { useEffect } from "react";
+import { LogoutModal } from "../../components/Modal/LogoutModal";
 
-function Home() {
+function Members() {
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const [showText, setShowText] = useState(false);
-  const handleClick = () => {
-    setShowText(true);
-    setTimeout(() => setShowText(false), 5000);
-  };
+  const { token } = useAuthStore();
+  const navigate = useNavigate();
+  const isAuthenticated = token !== "";
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated]);
   return (
     <Box
       display="flex"
@@ -32,8 +37,9 @@ function Home() {
       flexDirection={["column", "row"]}
     >
       <LogoBackground />
-      <ModeButton />
-      <Button
+      <IconButton
+        icon={<ArrowBackIcon />}
+        aria-label="Login Button"
         variant="outline"
         position="absolute"
         top="0"
@@ -41,8 +47,9 @@ function Home() {
         margin="20px"
         onClick={onOpen}
       >
-        Member Login
-      </Button>
+        Home
+      </IconButton>
+      <ModeButton />
       <Fade in>
         <Box
           display="flex"
@@ -57,16 +64,7 @@ function Home() {
             w={["90vw", "75vw"]}
             marginBottom="20px"
           >
-            Dark Water Privateers LLC.
-          </Text>
-          <Text
-            fontSize={["xl", "2xl"]}
-            w={["90vw", "60vw"]}
-            marginBottom="40px"
-          >
-            We are a PMC focused on civilian contracts, and specialized economic
-            opportunities around the ‘verse. Constantly expanding and recruiting
-            players for many play-styles.
+            Members Area Under Construction
           </Text>
           <ButtonGroup direction="row" spacing={4}>
             <Button
@@ -86,29 +84,11 @@ function Home() {
               Discord
             </Button>
           </ButtonGroup>
-          <IconButton
-            icon={<ChevronDownIcon />}
-            fontSize="40px"
-            aria-label="Color mode switcher"
-            onClick={handleClick}
-            variant="outline"
-            pos="absolute"
-            bottom="0"
-            w="80px"
-            margin="40px"
-          >
-            Continue
-          </IconButton>
-          {showText && (
-            <Text position="absolute" bottom="100px">
-              Updates Coming Soon!
-            </Text>
-          )}
         </Box>
       </Fade>
-      <LoginModal onClose={onClose} isOpen={isOpen} />
+      <LogoutModal onClose={onClose} isOpen={isOpen} />
     </Box>
   );
 }
 
-export default Home;
+export default Members;
