@@ -1,22 +1,14 @@
-import {
-  Box,
-  Divider,
-  IconButton,
-  useDisclosure,
-  useColorMode,
-} from "@chakra-ui/react";
+import { Box, Divider, IconButton, useColorMode } from "@chakra-ui/react";
 import LogoBackground from "../../components/Background/LogoBackground";
 import ModeButton from "../../components/modeButton";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store";
 import { useEffect } from "react";
-import { LogoutModal } from "../../components/Modal/LogoutModal";
 import Users from "../../components/Hangar/Users";
 import Ships from "../../components/Hangar/Ships";
 
 function Members() {
-  const { isOpen, onClose, onOpen } = useDisclosure();
   const { token } = useAuthStore();
   const navigate = useNavigate();
   const isAuthenticated = token !== "";
@@ -43,7 +35,7 @@ function Members() {
         top="0"
         left="0"
         margin="20px"
-        onClick={onOpen}
+        onClick={() => navigate("/")}
       >
         Home
       </IconButton>
@@ -56,7 +48,6 @@ function Members() {
         orientation="vertical"
       />
       <Ships />
-      <LogoutModal onClose={onClose} isOpen={isOpen} />
     </Box>
   );
 }
