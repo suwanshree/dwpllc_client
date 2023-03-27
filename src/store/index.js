@@ -21,11 +21,13 @@ let homeStore = (set) => ({
   resetView: () => set((state) => ({ ...state, view: 0, previousView: 0 })),
 });
 
-let authStore = (set) => ({
+let authStore = (set, get) => ({
   token: "",
   user: null,
+  users: [],
   setToken: (token) => set((state) => ({ ...state, token })),
   setUser: (user) => set((state) => ({ ...state, user })),
+  setUsers: (users) => set((state) => ({ ...state, users })),
   login: async (username, password) => {
     const response = await fetch("http://localhost:3000/login", {
       method: "POST",
@@ -42,6 +44,15 @@ let authStore = (set) => ({
     }
   },
   logout: () => set((state) => ({ ...state, token: "", user: null })),
+  getUsers: async (token) => {
+    const response = await fetch("http://localhost:3000/users");
+    if (response.ok) {
+      const users = await response.json();
+      set((state) => ({ ...state, users }));
+    } else {
+      throw new Error("Failed to fetch users");
+    }
+  },
 });
 
 authStore = persist(authStore, { name: "auth" });

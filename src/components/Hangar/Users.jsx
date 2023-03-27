@@ -6,11 +6,24 @@ import {
   useColorMode,
   Divider,
   Image,
+  Fade,
 } from "@chakra-ui/react";
+import { useEffect } from "react";
 import dwpllcLogo from "../../assets/pngs/logo-small.png";
+import { useAuthStore } from "../../store";
 
 const Users = () => {
   const { colorMode } = useColorMode();
+  const { user, users, token, getUsers } = useAuthStore();
+  useEffect(() => {
+    getUsers(token);
+  }, []);
+  const sortedUsers = [...users].sort((a, b) => {
+    if (a.username === user.username) return -1;
+    if (b.username === user.username) return 1;
+    return 0;
+  });
+  console.log(sortedUsers);
   return (
     <Stack
       w={["100%", "20%"]}
@@ -39,12 +52,12 @@ const Users = () => {
         size="100"
       />
       <Stack display="flex" overflow="auto" paddingTop="20px">
-        <Text marginLeft="10px">Coming soon...</Text>
-        {/* {userList?.map((user, i) => (
+        {sortedUsers?.map((user, i) => (
           <Fade in key={i}>
-            <UserCard id={user.id} />
+            {user.username}
+            {/* <UserCard id={user.id} /> */}
           </Fade>
-        ))} */}
+        ))}
         <Box h="2vh"></Box>
       </Stack>
     </Stack>
