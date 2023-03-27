@@ -29,7 +29,7 @@ let authStore = (set, get) => ({
   setUser: (user) => set((state) => ({ ...state, user })),
   setUsers: (users) => set((state) => ({ ...state, users })),
   login: async (username, password) => {
-    const response = await fetch("http://localhost:3000/login", {
+    const response = await fetch("https://dwpllc-server.onrender.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -45,7 +45,7 @@ let authStore = (set, get) => ({
   },
   logout: () => set((state) => ({ ...state, token: "", user: null })),
   getUsers: async (token) => {
-    const response = await fetch("http://localhost:3000/users");
+    const response = await fetch("https://dwpllc-server.onrender.com/users");
     if (response.ok) {
       const users = await response.json();
       set((state) => ({ ...state, users }));
