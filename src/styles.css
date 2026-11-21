@@ -1182,13 +1182,16 @@ button[aria-disabled="true"] {
   font-size: 0.875rem;
 }
 .footer-bottom {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   gap: 20px;
   padding-top: 23px;
   color: #8a969e;
   font-size: 0.75rem;
+}
+.footer-bottom > a {
+  justify-self: end;
 }
 .footer-bottom > div {
   display: flex;
@@ -1627,7 +1630,9 @@ button[aria-disabled="true"] {
     width: 100%;
   }
   .footer-bottom {
+    display: flex;
     align-items: flex-start;
+    justify-content: space-between;
     flex-wrap: wrap;
   }
 }
