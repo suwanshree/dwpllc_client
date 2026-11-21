@@ -59,6 +59,8 @@ The public site is a responsive, scrollable recruitment page. It includes operat
 
 ### Verification
 
+Use Node.js 26 (`nvm install && nvm use`). The `engines.node` field in `package.json` selects Node.js 26 for Vercel builds, overriding an older project default.
+
 ```sh
 npm ci
 npm run build
