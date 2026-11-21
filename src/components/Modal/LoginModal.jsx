@@ -73,7 +73,7 @@ export const LoginModal = ({ isOpen, onClose, finalFocusRef }) => {
       isCentered
       initialFocusRef={usernameRef}
       finalFocusRef={finalFocusRef}
-      scrollBehavior="inside"
+      scrollBehavior="outside"
       motionPreset="slideInBottom"
     >
       <ModalOverlay bg="rgba(3, 6, 9, 0.85)" backdropFilter="blur(9px)" />
@@ -84,11 +84,21 @@ export const LoginModal = ({ isOpen, onClose, finalFocusRef }) => {
         border="1px solid #344049"
         borderRadius="8px"
         maxW="460px"
-        mx="4"
-        overflow="hidden"
+        m="auto"
+        p={{ base: "5", sm: "7" }}
+        flexShrink="0"
+        maxH="none"
+        containerProps={{
+          padding: "12px",
+          height: "100dvh",
+          sx: {
+            scrollbarWidth: "none",
+            "&::-webkit-scrollbar": { display: "none" },
+          },
+        }}
       >
-        <ModalCloseButton top="5" right="5" aria-label="Close member login" />
-        <ModalHeader px="8" pt="9" pb="0">
+        <ModalCloseButton top="3" right="3" aria-label="Close member login" />
+        <ModalHeader className="login-header" p="0">
           <div className="login-emblem">
             <img
               src={logo}
@@ -97,69 +107,63 @@ export const LoginModal = ({ isOpen, onClose, finalFocusRef }) => {
               height="70"
             />
           </div>
-          <p className="eyebrow">DWPLLC · Member access</p>
-          <h2>
-            Welcome back,
-            <br />
-            <span>Privateer.</span>
-          </h2>
+          <div>
+            <p className="eyebrow">DWPLLC · Member access</p>
+            <h2>Welcome back.</h2>
+          </div>
         </ModalHeader>
-        <ModalBody px="8" pb="8">
-          <p className="login-description">
-            Your crew. Your next opportunity.
-            <br />
-            Sign in to the member portal.
-          </p>
+        <ModalBody p="0" overflow="visible">
           <form
             onSubmit={handleSubmit}
             className="login-form"
             aria-busy={isLoading}
           >
-            <label htmlFor="login-username">Username</label>
-            <input
-              ref={usernameRef}
-              id="login-username"
-              name="username"
-              value={username}
-              onChange={(event) => setUsername(event.target.value)}
-              autoComplete="username"
-              placeholder="Your member username"
-              required
-              readOnly={isLoading}
-              spellCheck={false}
-              autoCapitalize="none"
-              aria-describedby={error ? "login-error" : undefined}
-            />
-            <label htmlFor="login-password">Password</label>
-            <div className="password-field">
+            <div className="login-field">
+              <label htmlFor="login-username">Username</label>
               <input
-                id="login-password"
-                name="password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                type={showPassword ? "text" : "password"}
-                autoComplete="current-password"
-                placeholder="Your password"
+                ref={usernameRef}
+                id="login-username"
+                name="username"
+                value={username}
+                onChange={(event) => setUsername(event.target.value)}
+                autoComplete="username"
+                placeholder="Your member username"
                 required
                 readOnly={isLoading}
+                spellCheck={false}
+                autoCapitalize="none"
                 aria-describedby={error ? "login-error" : undefined}
               />
-              <button
-                type="button"
-                aria-label={showPassword ? "Hide password" : "Show password"}
-                aria-pressed={showPassword}
-                onClick={() => setShowPassword((value) => !value)}
-              >
-                <Icon name="eye" size={19} />
-              </button>
             </div>
-            <div className="login-help">
-              <span>
-                <Icon name="lock" size={13} /> Members only
-              </span>
-              <a href={links.admin} target="_blank" rel="noopener noreferrer">
-                Need access?
-              </a>
+            <div className="login-field">
+              <div className="login-password-label">
+                <label htmlFor="login-password">Password</label>
+                <a href={links.admin} target="_blank" rel="noopener noreferrer">
+                  Need access?
+                </a>
+              </div>
+              <div className="password-field">
+                <input
+                  id="login-password"
+                  name="password"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  type={showPassword ? "text" : "password"}
+                  autoComplete="current-password"
+                  placeholder="Your password"
+                  required
+                  readOnly={isLoading}
+                  aria-describedby={error ? "login-error" : undefined}
+                />
+                <button
+                  type="button"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  aria-pressed={showPassword}
+                  onClick={() => setShowPassword((value) => !value)}
+                >
+                  <Icon name="eye" size={19} />
+                </button>
+              </div>
             </div>
             {error && (
               <p className="login-error" id="login-error" role="alert">
