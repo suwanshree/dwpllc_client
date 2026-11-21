@@ -1,219 +1,88 @@
-import {
-  Box,
-  Text,
-  Th,
-  Tr,
-  Td,
-  Table,
-  TableContainer,
-  Thead,
-  Tbody,
-  chakra,
-  useColorMode,
-  UnorderedList,
-  ListItem,
-} from "@chakra-ui/react";
+import { useState } from "react";
+import { history } from "../../data/organization";
 
-const History = () => {
-  const { colorMode } = useColorMode();
+export default function History() {
+  const [selectedYear, setSelectedYear] = useState("2950");
+  const [showAll, setShowAll] = useState(false);
+  const entries = showAll
+    ? history
+    : history.filter((item) => item.year === selectedYear);
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      flexDirection="column"
-    >
-      <Text
-        fontSize={["2xl", "4xl"]}
-        w={["90vw", "75vw"]}
-        marginBottom="20px"
-        textAlign="center"
-        color={colorMode === "light" ? "gray.800" : "silver"}
-      >
-        HISTORY
-      </Text>
-      <UnorderedList
-        display={["block", "none"]}
-        fontSize={["m", "xl"]}
-        listStyleType="none"
-        marginLeft="0"
-        spacing="5px"
-        width="90vw"
-        color={colorMode === "light" ? "black" : "silver"}
-      >
-        <ListItem color={colorMode === "light" ? "black" : "gray.400"}>
-          <chakra.span fontStyle="italic" fontWeight="bold">
-            April 2950:{" "}
-          </chakra.span>
-          FatalAngel leaves Hurston in search of new opportunities.
-        </ListItem>
-        <ListItem color={colorMode === "light" ? "black" : "gray.400"}>
-          <chakra.span fontStyle="italic" fontWeight="bold">
-            July 2950:{" "}
-          </chakra.span>
-          After gaining influence in Levski, FatalAngel decides to carve his own
-          path.
-        </ListItem>
-        <ListItem color={colorMode === "light" ? "black" : "gray.400"}>
-          <chakra.span fontStyle="italic" fontWeight="bold">
-            August 2950:{" "}
-          </chakra.span>
-          Fatal meets like-minded individuals, and they establish Dark Water
-          Privateers LLC in Levski.
-        </ListItem>
-        <ListItem color={colorMode === "light" ? "black" : "gray.400"}>
-          <chakra.span fontStyle="italic" fontWeight="bold">
-            August 17, 2950:{" "}
-          </chakra.span>
-          Dark Water Privateers LLC is established, led by FatalAngel and
-          supported by CMDR_Despair.
-        </ListItem>
-        <ListItem color={colorMode === "light" ? "black" : "gray.400"}>
-          <chakra.span fontStyle="italic" fontWeight="bold">
-            September 7, 2950:{" "}
-          </chakra.span>
-          The organization holds its first intra-org ground ops event, resulting
-          in a loss for the defending force.
-        </ListItem>
-        <ListItem color={colorMode === "light" ? "black" : "gray.400"}>
-          <chakra.span fontStyle="italic" fontWeight="bold">
-            October 18, 2950:{" "}
-          </chakra.span>
-          An inter-org FPS event is held, resulting in a tie and a planned
-          tie-breaker event.
-        </ListItem>
-        <ListItem color={colorMode === "light" ? "black" : "gray.400"}>
-          <chakra.span fontStyle="italic" fontWeight="bold">
-            February 15, 2951:{" "}
-          </chakra.span>
-          DWPLLC signs a 1-year mutually beneficial contract with Crusader
-          Industries, details undisclosed.
-        </ListItem>
-        <ListItem color={colorMode === "light" ? "black" : "gray.400"}>
-          <chakra.span fontStyle="italic" fontWeight="bold">
-            June 18, 2951:{" "}
-          </chakra.span>
-          DWPLLC members assist the CDF in pushing back Xenothreat and are
-          rewarded by Advocacy and CDF.
-        </ListItem>
-        <ListItem color={colorMode === "light" ? "black" : "gray.400"}>
-          <chakra.span fontStyle="italic" fontWeight="bold">
-            December 26, 2951:{" "}
-          </chakra.span>
-          DWPLLC members participate in the 'Jumptown Wars' and battle to secure
-          the ultimate profits..
-        </ListItem>
-        <ListItem color={colorMode === "light" ? "black" : "gray.400"}>
-          <chakra.span fontStyle="italic" fontWeight="bold">
-            January 2952:{" "}
-          </chakra.span>
-          Several DWPLLC members are assigned to contracts in the Pyro system
-          with news of organization expansion.
-        </ListItem>
-      </UnorderedList>
-      <TableContainer w={["90vw", "80vw"]} display={["none", "block"]}>
-        <Table variant="simple">
-          <Thead>
-            <Tr>
-              <Th>Date</Th>
-              <Th>Event</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            <Tr>
-              <Td color={colorMode === "light" ? "gray.800" : "silver"}>
-                April 2950
-              </Td>
-              <Td color={colorMode === "light" ? "black" : "gray.400"}>
-                FatalAngel leaves Hurston in search of new opportunities.
-              </Td>
-            </Tr>
-            <Tr>
-              <Td color={colorMode === "light" ? "gray.800" : "silver"}>
-                July 2950
-              </Td>
-              <Td color={colorMode === "light" ? "black" : "gray.400"}>
-                After gaining influence in Levski, FatalAngel decides to carve
-                his own path.
-              </Td>
-            </Tr>
-            <Tr>
-              <Td color={colorMode === "light" ? "gray.800" : "silver"}>
-                August 2950
-              </Td>
-              <Td color={colorMode === "light" ? "black" : "gray.400"}>
-                Fatal meets like-minded individuals, and they establish Dark
-                Water Privateers LLC in Levski.
-              </Td>
-            </Tr>
-            <Tr>
-              <Td color={colorMode === "light" ? "gray.800" : "silver"}>
-                August 17, 2950
-              </Td>
-              <Td color={colorMode === "light" ? "black" : "gray.400"}>
-                Dark Water Privateers LLC is established, led by FatalAngel and
-                supported by CMDR_Despair.
-              </Td>
-            </Tr>
-            <Tr>
-              <Td color={colorMode === "light" ? "gray.800" : "silver"}>
-                September 7, 2950
-              </Td>
-              <Td color={colorMode === "light" ? "black" : "gray.400"}>
-                The organization holds its first intra-org ground ops event,
-                resulting in a loss for the defending force.
-              </Td>
-            </Tr>
-            <Tr>
-              <Td color={colorMode === "light" ? "gray.800" : "silver"}>
-                October 18, 2950
-              </Td>
-              <Td color={colorMode === "light" ? "black" : "gray.400"}>
-                An inter-org FPS event is held, resulting in a tie and a planned
-                tie-breaker event.
-              </Td>
-            </Tr>
-            <Tr>
-              <Td color={colorMode === "light" ? "gray.800" : "silver"}>
-                February 15, 2951
-              </Td>
-              <Td color={colorMode === "light" ? "black" : "gray.400"}>
-                DWPLLC signs a 1-year mutually beneficial contract with Crusader
-                Industries, details undisclosed.
-              </Td>
-            </Tr>
-            <Tr>
-              <Td color={colorMode === "light" ? "gray.800" : "silver"}>
-                June 18, 2951
-              </Td>
-              <Td color={colorMode === "light" ? "black" : "gray.400"}>
-                DWPLLC members assist the CDF in pushing back Xenothreat and are
-                rewarded by the Advocacy and CDF.
-              </Td>
-            </Tr>
-            <Tr>
-              <Td color={colorMode === "light" ? "gray.800" : "silver"}>
-                December 26, 2951
-              </Td>
-              <Td color={colorMode === "light" ? "black" : "gray.400"}>
-                DWPLLC members participate in the 'Jumptown Wars' and battle to
-                secure the ultimate profits..
-              </Td>
-            </Tr>
-            <Tr>
-              <Td color={colorMode === "light" ? "gray.800" : "silver"}>
-                January 2952
-              </Td>
-              <Td color={colorMode === "light" ? "black" : "gray.400"}>
-                Several DWPLLC members are assigned to contracts in the Pyro
-                system with news of organization expansion.
-              </Td>
-            </Tr>
-          </Tbody>
-        </Table>
-      </TableContainer>
-    </Box>
+    <section id="history" className="section history-section">
+      <div className="container">
+        <div className="section-heading history-heading">
+          <div>
+            <p className="eyebrow">The ship’s log</p>
+            <h2>
+              Every crew has a story.
+              <br />
+              <span>Here’s ours.</span>
+            </h2>
+          </div>
+          <p>
+            From a bar crawl in Levski to the frontiers of Nyx. Six years of
+            contracts, close calls, and carving our own path.
+          </p>
+        </div>
+        <div className="history-controls" aria-label="History years">
+          <div className="year-list">
+            {history.map((item) => (
+              <button
+                key={item.year}
+                className={`year-button ${!showAll && selectedYear === item.year ? "selected" : ""}`}
+                aria-pressed={!showAll && selectedYear === item.year}
+                aria-controls="history-entries"
+                onClick={() => {
+                  setSelectedYear(item.year);
+                  setShowAll(false);
+                }}
+              >
+                {item.year}
+              </button>
+            ))}
+          </div>
+          <button
+            className="text-button"
+            aria-pressed={showAll}
+            onClick={() => setShowAll((value) => !value)}
+          >
+            {showAll ? "View one year" : "Read full history"}
+          </button>
+        </div>
+        <div id="history-entries" aria-live="polite" aria-atomic="true">
+          {entries.map((item) => (
+            <div className="history-year" key={item.year}>
+              <div className="history-summary">
+                <span className="history-big-year">{item.year}</span>
+                <h3>{item.title}</h3>
+                <p className="mono">{item.location}</p>
+                <span className="history-seal" aria-hidden="true">
+                  DW / ARCHIVES
+                </span>
+              </div>
+              <ol className="timeline">
+                {item.events.map((event, i) => (
+                  <li
+                    key={event.date || i}
+                    className={event.milestone ? "milestone" : ""}
+                  >
+                    <span className="timeline-marker" />
+                    <p className="timeline-date">
+                      {event.date || item.year}
+                      {event.milestone && (
+                        <span className="milestone-label">
+                          Organization founded
+                        </span>
+                      )}
+                    </p>
+                    <p>{event.text}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
-};
-
-export default History;
+}

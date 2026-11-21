@@ -1,0 +1,29 @@
+{
+  "note": "Star Citizen artwork remains the property of Cloud Imperium Games and its respective creators. Locally optimized copies are used for this independent player organization site.",
+  "hero.webp": {
+    "description": "Official Drake Cutlass Black promotional artwork",
+    "source": "https://robertsspaceindustries.com/en/pledge/ships/drake-cutlass/Cutlass-Black"
+  },
+  "security.webp": {
+    "description": "Official Polaris artwork, Ship Showdown 2955",
+    "source": "https://robertsspaceindustries.com/en/ship-showdown2025/winners",
+    "original": "https://media.robertsspaceindustries.com/4ok45pfv0ahhp/store_slideshow_small_zoom.jpg"
+  },
+  "salvage.webp": {
+    "description": "Official RSI Arrastra industrial artwork",
+    "source": "https://robertsspaceindustries.com/en/pledge/ships/arrastra/Arrastra"
+  },
+  "org-background.webp": {
+    "description": "DWPLLC organization background artwork",
+    "source": "https://robertsspaceindustries.com/en/orgs/DWPLLC",
+    "original": "https://robertsspaceindustries.com/media/csmovcyyecpl3r/background_blur/DWPLLC-Background.jpg"
+  },
+  "fatalangel.jpg": {
+    "description": "Public RSI avatar for FatalAngel",
+    "source": "https://robertsspaceindustries.com/en/citizens/FatalAngel"
+  },
+  "momo-king.png": {
+    "description": "Public RSI avatar for Momo_King",
+    "source": "https://robertsspaceindustries.com/en/citizens/Momo_King"
+  }
+}

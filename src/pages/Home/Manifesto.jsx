@@ -1,53 +1,34 @@
-import {
-  Box,
-  Text,
-  UnorderedList,
-  ListItem,
-  useColorMode,
-} from "@chakra-ui/react";
+import Icon from "../../components/Icon";
+import { manifesto } from "../../data/organization";
 
-const Manifesto = () => {
-  const { colorMode } = useColorMode();
+export default function Manifesto() {
   return (
-    <Box w={["90vw", "30vw"]} textAlign="center">
-      <Text
-        fontSize={["2xl", "4xl"]}
-        marginBottom="20px"
-        color={colorMode === "light" ? "gray.800" : "silver"}
-      >
-        MANIFESTO
-      </Text>
-      <UnorderedList
-        fontSize={["l", "xl"]}
-        listStyleType="none"
-        marginLeft="0"
-        spacing="10px"
-        color={colorMode === "light" ? "black" : "silver"}
-      >
-        <ListItem fontStyle="italic" fontWeight="bold" fontSize={["xl", "2xl"]}>
-          Vision
-        </ListItem>
-        <ListItem color={colorMode === "light" ? "black" : "gray.400"}>
-          Expand operations in multiple systems, engaging in profitable
-          activities to the benefit of all stakeholders.
-        </ListItem>
-        <ListItem fontStyle="italic" fontWeight="bold" fontSize={["xl", "2xl"]}>
-          Mission
-        </ListItem>
-        <ListItem color={colorMode === "light" ? "black" : "gray.400"}>
-          Find profitable and engaging activities with each new iteration and
-          facilitate them within the organization.
-        </ListItem>
-        <ListItem fontStyle="italic" fontWeight="bold" fontSize={["xl", "2xl"]}>
-          Goal
-        </ListItem>
-        <ListItem color={colorMode === "light" ? "black" : "gray.400"}>
-          Hold events with allied organizations followed up by commendations and
-          awards.
-        </ListItem>
-      </UnorderedList>
-    </Box>
+    <section id="manifesto" className="section manifesto-section">
+      <div className="container">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">Our manifesto</p>
+            <h2>
+              A shared direction.
+              <br />
+              <span>Room for your own path.</span>
+            </h2>
+          </div>
+          <p>
+            Good people. Profitable work. A reason to log back in. These are the
+            principles that keep us moving.
+          </p>
+        </div>
+        <div className="manifesto-grid">
+          {manifesto.map((item) => (
+            <article className="manifesto-item" key={item.title}>
+              <Icon name={item.icon} size={32} />
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
   );
-};
-
-export default Manifesto;
+}

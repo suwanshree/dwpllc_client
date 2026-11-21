@@ -1,64 +1,42 @@
-import {
-  Box,
-  Text,
-  UnorderedList,
-  ListItem,
-  chakra,
-  useColorMode,
-} from "@chakra-ui/react";
+import { charter } from "../../data/organization";
+import Icon from "../../components/Icon";
 
-const Charter = () => {
-  const { colorMode } = useColorMode();
+export default function Charter() {
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      flexDirection="column"
-      w={["90vw", "40vw"]}
-    >
-      <Text
-        fontSize={["2xl", "4xl"]}
-        marginBottom="20px"
-        color={colorMode === "light" ? "gray.800" : "silver"}
-      >
-        CHARTER
-      </Text>
-      <UnorderedList
-        fontSize={["l", "xl"]}
-        spacing="10px"
-        color={colorMode === "light" ? "black" : "gray.400"}
-      >
-        <ListItem>
-          <chakra.span color={colorMode === "light" ? "gray.800" : "silver"}>
-            DWPLLC
-          </chakra.span>{" "}
-          is a{" "}
-          <chakra.span color={colorMode === "light" ? "gray.800" : "silver"}>
-            PMC
-          </chakra.span>{" "}
-          with massive stake holdings in other verticals to maximize profit.
-          Organization ethics are based around maximizing profit and minimizing
-          churn.
-        </ListItem>
-        <ListItem>
-          We hope to provide great gameplay experiences while building a helpful
-          and supportive community that supports a strong protection of personal
-          liberties and freedoms including diversity of thought and political
-          discourse.
-        </ListItem>
-        <ListItem>
-          We strongly oppose any kind of harassment of org members or other
-          players in the ‘verse including any acts of trolling/griefing. Any
-          such action may result in a permanent ban.
-        </ListItem>
-        <ListItem>
-          We are NOT a pirate org, but we are focused on the financial profit of
-          our members. Which sometimes means treading on dangerous lines.
-        </ListItem>
-      </UnorderedList>
-    </Box>
+    <section id="charter" className="section charter-section">
+      <div className="container charter-layout">
+        <div className="charter-intro">
+          <p className="eyebrow">The charter</p>
+          <h2>
+            Independent spirits.
+            <br />
+            <span>Shared standards.</span>
+          </h2>
+          <p>
+            There’s a difference between flying together and being a crew. This
+            is what we stand for.
+          </p>
+          <div className="charter-note">
+            <Icon name="shield" size={28} />
+            <span>
+              Private military company.
+              <br />
+              <strong>Not a pirate organization.</strong>
+            </span>
+          </div>
+        </div>
+        <div className="charter-articles">
+          {charter.map((item, index) => (
+            <details key={item.title} open={index === 0 || undefined}>
+              <summary>
+                {item.title}
+                <Icon name="chevron" size={20} />
+              </summary>
+              <p>{item.text}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
   );
-};
-
-export default Charter;
+}

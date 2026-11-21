@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 let homeStore = (set) => ({
@@ -28,9 +28,10 @@ let authStore = (set, get) => ({
   setToken: (token) => set((state) => ({ ...state, token })),
   setUser: (user) => set((state) => ({ ...state, user })),
   setUsers: (users) => set((state) => ({ ...state, users })),
-  login: async (username, password) => {
+  login: async (username, password, signal) => {
     const response = await fetch("https://dwpllc-server.onrender.com/login", {
       method: "POST",
+      signal,
       headers: {
         "Content-Type": "application/json",
       },
@@ -38,6 +39,9 @@ let authStore = (set, get) => ({
     });
     if (response.ok) {
       const data = await response.json();
+      if (!data.token || typeof data.token !== "string") {
+        throw new Error("Invalid credentials");
+      }
       set((state) => ({ ...state, token: data.token, user: data.user }));
     } else {
       throw new Error("Failed to login");
